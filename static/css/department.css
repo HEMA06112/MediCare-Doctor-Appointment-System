@@ -1,0 +1,42 @@
+header nav a {
+    text-decoration: none;
+    color: black;
+}
+
+#dept {
+    color: blue;
+    text-decoration: underline;
+}
+
+center {
+    line-height: 15px;
+}
+
+section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
+}
+
+fieldset {
+    align-items: center;
+    border-radius: 10px;
+    width: 270px;
+}
+
+fieldset img {
+    width: 270px;
+    height: 200px;
+    border-radius: 10px;
+    align-items: center;
+}
+
+fieldset p {
+    color: rgb(63, 57, 57);
+    line-height: 22px;
+    width: 200px;
+    font-size: 18px;
+}

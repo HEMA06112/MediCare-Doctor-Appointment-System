@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
+<body>
+<fieldset id="left">
+        <section>
+        <div>
+        <div id="head">
+        <h2>MediCare</h2>
+        <p>Your Health, Our Priority</p>
+        </div>
+        <div id="hero">
+        <h1>Welcome to MediCare</h1>
+        <p>Create an account to access our services, book appointments and manage your health easily.</p>
+        </div>
+        <div id="info">
+        <div>
+            <h3>Book Appointment</h3>
+            <p>Schedule appointments with trusted doctors.</p>
+        </div>
+        <div>
+            <h3>Health Records</h3>
+            <p>Access your medical history and presciptions.</p>
+        </div>
+        <div>
+            <h3>Secure & Private</h3>
+            <p>Your information is safe and protected with us.</p>
+        </div>
+        </div>
+        <br><br>
+
+        <fieldset id="help">
+            <h3>Need Help?</h3>
+            <h4>Our support team is here to help you.</h4>
+            <h4>+91 1234567890</h4>
+        </fieldset>
+
+        </div>
+        <fieldset id="right">
+            <div>
+            <h1>Create Your account</h1>
+            <p>Please fill in the details to sign up</p>
+            </div>
+            <br><br>
+        <form action="{% url 'signup' %}" method='POST'>
+        {% csrf_token %}
+        <label for="">Username</label>
+        <input type="text" placeholder="Enter your username" name="username" required><br>
+        <label for="">Email</label>
+        <input type="email" placeholder="Enter your email address" name="email" required><br>
+        <label for="">Phone number </label>
+        <input type="number" placeholder="Enter your phone number" name="phone_number"><br>
+        <label for="">Password </label>
+        <input type="password" placeholder="Create a password" name="password" required><br>
+        <label for="">Confirm password </label>
+        <input type="password" placeholder="Confirm your password" name="confirm_password" required><br>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <button type="submit">Sign Up</button>
+        <center><p>Aleady have an account? <a href="{% url 'login' %}"><span style="color: rgb(0, 38, 255);">Login</a></p></center>
+      
+    </form>
+    
+    </fieldset>
+    </section>
+</body>
+</html>

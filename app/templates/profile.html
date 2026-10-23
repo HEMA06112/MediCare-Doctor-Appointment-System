@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<section id="doctor">
+
+    <fieldset>
+        <div>
+            <img src="{{a.profile_image.url}}" alt="{{a.name}}">
+        </div>
+        <div id="detail">
+            <h1> {{a.name}}</h1>
+            <p id="spe">{{a.specialization}}</p>
+            <p id="qua">{{a.qualification}} </p>
+            <p id="qua"> {{a.experience}}+ Years Experience</p>
+            <p>{{a.bio}}</p><br><br>
+            <a href="{% url 'appointment' a.id %}"><button id="book">Book Appointment</button></a>
+
+        </div>
+    </fieldset>
+</section>
+
+<section id="about">
+    <div>
+        <h2>About Doctor</h2>
+        <p>{{a.about}}</p>
+    </div>
+    <div id="field">
+        <fieldset>
+            <p><b>Specialization</b> <br>{{a.specialization}}</p>
+        </fieldset>
+        <fieldset>
+            <p><b>Qualification</b> <br>{{a.qualification}}</p>
+        </fieldset>
+        <fieldset>
+            <p><b>Experience</b> <br>{{a.experience}}</p>
+        </fieldset>
+        <fieldset>
+            <p><b>Consultation Fee</b><br> {{a.consultation_fee}}</p>
+        </fieldset>
+        <fieldset>
+            <p><b>Available days</b> <br>{{a.available_days}}</p>
+        </fieldset>
+        <fieldset>
+            <p><b>Available time</b><br> {{a.available_time}}</p>
+        </fieldset>
+    </div>
+
+</section>
+<section id="review">
+    <h2> Patient Review </h2>
+    <div>
+        <fieldset>
+            <h4>Rahul</h4>
+            <p>2 week ago</p>
+            <p>Excellent doctors. They explained my problem detail and the treatment was very effective </p>
+        </fieldset>
+        <fieldset>
+            <h4>Priya</h4>
+            <p>1 month ago</p>
+            <p>Very thorough ans supportive. The staff was also very cooperative. Higly recommended! </p>
+        </fieldset>
+        <fieldset>
+            <h4>Amith</h4>
+            <p>2 month ago</p>
+            <p>Great experience! The doctor listens patiently and providesthe best solution</p>
+        </fieldset>
+        <fieldset>
+            <h4>Sanam</h4>
+            <p>4 months ago</p>
+            <p>I am very happy with the treatment and care I received</p>
+        </fieldset>
+    </div>
+</section>
+
+{% endblock %}

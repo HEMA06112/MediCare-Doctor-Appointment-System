@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/department.css' %}">
+<center>
+    <h1>Our Departments</h1>
+    <p>We provide the best medical services in various departments</p>
+</center>
+<section>
+    {% for i in item %}
+    <fieldset>
+        <img src="{{i.image.url}}" alt="">
+        <center>
+            <h2>{{i.department_name}}</h2>
+            <p>{{i.description}}</p>
+        </center>
+    </fieldset>
+    {% endfor %}
+</section>
+
+{% endblock %}

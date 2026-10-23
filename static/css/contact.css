@@ -1,0 +1,87 @@
+header nav a {
+    text-decoration: none;
+    color: black;
+}
+
+#contact {
+    color: blue;
+    text-decoration: underline;
+}
+
+#hero {
+    margin: 20px;
+    background-image: url("/static/image/contact.jpg");
+    background-color: #B9CEE1;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: contain;
+    padding: 20px;
+    height: 200px;
+}
+
+#hero a {
+    text-decoration: none;
+    color: rgb(63, 57, 57);
+}
+
+#field {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 20px;
+
+}
+
+fieldset {
+    padding: 30px;
+    border-radius: 10px;
+    background-color: azure;
+}
+
+input {
+    width: 300px;
+    height: 35px;
+    row-gap: 40px;
+    border-radius: 5px;
+    border: 2px solid gray;
+}
+
+input::placeholder {
+    padding: 20px;
+}
+
+textarea {
+    width: 260px;
+    height: 60px;
+    padding: 20px;
+    row-gap: 40px;
+    border-radius: 5px;
+    border: 2px solid gray;
+}
+
+#det {
+    width: 450px;
+}
+
+#send {
+    width: 180px;
+    height: 40px;
+    background-color: rgb(0, 38, 255);
+    color: white;
+    margin-left: 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    margin: 30px;
+}
+
+#data fieldset {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px;
+    padding: 20px;
+}
+
+#data fieldset p {
+    width: 250px;
+}

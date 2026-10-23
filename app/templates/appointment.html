@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<link rel="stylesheet" href="{% static 'css/appointment.css' %}">
+<section id="hero">
+    <h1>Book Appointment</h1>
+    <p>Fill the details below to book an appointment with our doctor.</p>
+</section>
+<section id="indetail">
+    <fieldset>
+        <h1>Doctor Information</h1>
+        <div id="info">
+            <img src="{{a.profile_image.url}}" alt="">
+            <div>
+                <h3>{{a.name}}</h3>
+                <h4>{{a.specialization}}</h4>
+                <p>{{a.qualification}}</p>
+                <p>{{a.experience}} Years Experience</p>
+            </div>
+        </div>
+        <div id="avai">
+            <p>
+            <h2>Available Days</h2> <br> {{a.available_days}}</p> <br>
+            <p>
+            <h2>Available Time</h2> <br> {{a.available_time}}</p>
+        </div id="field">
+    </fieldset>
+    <div>
+        <fieldset id="detail">
+            <h1>Appointment Details</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <div>
+                    <label for="">Patient Name</label>
+                    <input type="text" name="patient_name"><br><br>
+                </div>
+
+                <div>
+                    <label for="">Email </label>
+                    <input type="email" name="email"><br><br>
+                </div>
+
+                <div>
+                    <label for="">Phone Number </label>
+                    <input type="text" name="phone_number"><br><br>
+                </div>
+
+                <div>
+                    <label for="">Select Date</label>
+                    <input type="date" name="date"><br><br>
+                </div>
+
+                <div>
+                    <label for="">Time Slot</label>
+                    <input type="time" name="slot_time"><br><br>
+                </div>
+                <div>
+                    <label for="" id="td">Reason</label>
+                    <textarea name="reason"></textarea><br><br>
+                </div>
+
+                <button type="submit" id="appointment">Book Appointment</button>
+        </fieldset>
+    </div>
+    </form>
+    </div>
+</section>
+
+{% endblock %}

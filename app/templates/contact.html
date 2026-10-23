@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+<section id="hero">
+    <h1>Contact Us</h1>
+    <a href="/">Home</a> / <a href="{% url 'contact' %}"><span style="color: rgb(0, 38, 255);">Contact Us</a></span>
+
+    <p>We are here to help and answer any question you may have.</p>
+</section>
+<section id="field">
+    <fieldset>
+        <div>
+            <h2>Get in Touch</h2>
+            <p>Fill out the form and we will get back to you as soon as possible.</p>
+        </div> <br>
+        <form method="POST"></form>
+        <input type="text" placeholder="Your Name" name="name">
+        <input type="text" placeholder="Your Email" name="email"><br><br>
+        <input type="text" placeholder="Your Phone Number" name="phone_number"><br><br>
+        <input type="text" placeholder="Subject" name="subject"><br><br>
+        <textarea placeholder="Your Message" name="message"></textarea><br><br>
+        <center><a href=""><button type="submit" id="send"> Send Message</button></a></center>
+
+        {% if success %}
+        <p>{{success}}</p>
+        {% endif %}
+
+    </fieldset>
+    <fieldset id="det">
+        <h2>Contact Information </h2>
+        <p>Reach out to us through any of the following.</p>
+        <div>
+            <h3>Phone</h3>
+            <p>+91 12345 67890</p>
+            <p>+91 98765 43210</p>
+        </div>
+        <div>
+            <h3>Email</h3>
+            <p>info@medicare.com</p>
+            <p>support@medicare.com</p>
+        </div>
+        <div>
+            <h3>Address</h3>
+            <p>12,Health Care Street, <br>Vellore, Tamil Nadu - 632001, India</p>
+        </div>
+        <div>
+            <h3>Working Hours</h3>
+            <p>24/7 Working Hours</p>
+        </div>
+
+</section>
+<section id="data">
+    <fieldset>
+        <div>
+            <h3>Quick Response</h3>
+            <p>We respond to all inquiries within 24 hours.</p>
+        </div>
+        <div>
+            <h3>Trusted Support</h3>
+            <p>Our support team is always ready to assist you.</p>
+        </div>
+        <div>
+            <h3>Patient First</h3>
+            <p>Your health and satisfaction are our top priority</p>
+        </div>
+        <div>
+            <h3>Quality Care</h3>
+            <p>We are committed to providing the best healthcare.</p>
+        </div>
+    </fieldset>
+</section>
+
+{% endblock %}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <style>
+        header {
+            background-color: aliceblue;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            align-items: center;
+        }
+
+        header div {
+            line-height: 5px;
+        }
+
+        nav a {
+            margin-right: 30px;
+            text-decoration: none;
+        }
+
+        #register {
+            background-color: rgb(0, 38, 255);
+            border-color: rgb(0, 38, 255);
+            color: white;
+            width: 100px;
+            height: 40px;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        #logout {
+            background-color: aliceblue;
+            color: blue;
+            border-color: rgb(0, 38, 255);
+            width: 100px;
+            height: 40px;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        #log {
+            background-color: aliceblue;
+            color: blue;
+            border-color: rgb(0, 38, 255);
+            ;
+            width: 100px;
+            height: 40px;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            background-color: rgb(23, 22, 88);
+            color: white;
+            padding: 30px;
+            padding-left: 100px;
+            gap: 20px;
+        }
+
+        #medi {
+            width: 190px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            line-height: 30px;
+        }
+
+        div h2 {
+            line-height: 5%;
+        }
+    </style>
+
+    <header>
+        <div>
+            <h2>Medicare</h2>
+            <p>Appointment System</p>
+        </div>
+        <nav>
+            {% if request.user.is_authenticated %}
+            <a href="/" id="home">Home</a>
+            <a href="{% url 'about' %}" id="about">About Us</a>
+            <a href="{% url 'doctor' %}" id="doctors">Doctors</a>
+            <a href="{% url 'department' %}" id="dept">Department</a>
+            <a href="{% url 'contact' %}" id="contact">Contact Us</a>
+            <a href="{% url 'logout' %}"><button id="logout">Logout</button></a>
+            {% else %}
+            <a href="{% url 'login' %}"><button id="log">Login</button></a>
+            <a href="{% url 'signup' %}"><button id="register">Register</button></a>
+            {% endif %}
+        </nav>
+    </header>
+
+    {% block body %}
+
+    {% endblock %}
+
+    <footer>
+        <div id="medi">
+            <h2>Medicare </h2>
+            <p>Appointment System</p>
+            <p>We are committed to providing the best healthcare services to our patients. Your health and well-being
+                are our top priority</p>
+        </div>
+        <div>
+            <h3>Quick Links</h3>
+            <a href="/">Home</a> <br>
+            <a href="{% url 'about' %}">About Us</a> <br>
+            <a href="{% url 'doctor' %}">Doctors</a><br>
+            <a href="{% url 'department' %}">Department</a><br>
+            <a href="{% url 'contact' %}">Contact Us</a>
+        </div>
+        <div>
+            <h3>Our Services</h3>
+            <p>Book Appointment</p>
+            <p>Emergency Care</p>
+            <p>General Medicine</p>
+            <p>Cardiology</p>
+            <p>Pediatrics</p>
+        </div>
+        <div>
+            <h3>Contact Information</h3>
+            <p>Vellore</p>
+            <p>10203 03231</p>
+            <p>medicare@gmail.com</p>
+            <p>www.medicare.com</p>
+        </div>
+        <div>
+            <h3>Working Hours</h3>
+            <p>Monday-Friday <br> 9:00AM-6:00PM</p>
+            <p>Saturday <br> 9:00AM-2:00PM</p>
+            <p>Sunday <br> <span style="color: red;">Emergency Only</span></p>
+        </div>
+        <br><br>
+    </footer>
+</body>
+
+</html>
