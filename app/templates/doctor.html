@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{% static 'css/doctor.css' %}">
 <section id="hero">
     <h1>Our Doctors</h1>
-    <a href="/">Home</a> / <a href="{% url 'doctor' %}" style="color: rgb(0, 38, 255);">Doctors</a>
+    <a href="/">Home</a> / <a href="{% url 'doctor' %}"><span style="color: rgb(0, 38, 255);">Doctors</a></span>
     <p>Our team of experienced and dedicated doctors are <br> committed to providing you with the best possible <br>
         healthcare. Book an appointment with a specialist today.</p>
 </section>
@@ -12,47 +12,41 @@
     <fieldset>
         <form method="GET" action="{% url 'doctor' %}">
             <div class="filters">
-                <div class="name-search">
+                <div class="search-box">
                     <input type="text" name="name" placeholder="Search doctors by name..."
                         value="{{request.GET.name|default:''}}">
-                    <a class="clear-filters" href="{% url 'doctor' %}" aria-label="Clear filters" title="Clear filters">&times;</a>
+                
+                    <a href="{% url 'doctor' %}" class="clear-search" title="Clear-filter">&times;</a>
+                </div>
+                <div class="spec">
+                    <select name="specialization" aria-label="Filter by specialization">
+                        <option value="" {% if not request.GET.specialization %}selected{% endif %}>All Specializations</option>
+                        <option value="Cardiologist" {% if request.GET.specialization == "Cardiologist" %}selected{% endif %}>Cardiologist</option>
+                        <option value="Dentist" {% if request.GET.specialization == "Dentist" %}selected{% endif %}>Dentist</option>
+                        <option value="Dermatologist" {% if request.GET.specialization == "Dermatologist" %}selected{% endif %}>Dermatologist</option>
+                        <option value="ENT specialist" {% if request.GET.specialization == "ENT specialist" %}selected{% endif %}>ENT specialist</option>
+                        <option value="General Physician" {% if request.GET.specialization == "General Physician" %}selected{% endif %}>General Physician</option>
+                        <option value="Gynecologist" {% if request.GET.specialization == "Gynecologist" %}selected{% endif %}>Gynecologist</option>
+                        <option value="Neurologist" {% if request.GET.specialization == "Neurologist" %}selected{% endif %}>Neurologist</option>
+                        <option value="Ophthalmologist" {% if request.GET.specialization == "Ophthalmologist" %}selected{% endif %}>Ophthalmologist</option>
+                        <option value="Orthologist" {% if request.GET.specialization == "Orthologist" %}selected{% endif %}>Orthologist</option>
+                        <option value="Pediatrician" {% if request.GET.specialization == "Pediatrician" %}selected{% endif %}>Pediatrician</option>
+                        <option value="psychiatrist" {% if request.GET.specialization == "psychiatrist" %}selected{% endif %}>Psychiatrist</option>
+                        <option value="Urologist" {% if request.GET.specialization == "Urologist" %}selected{% endif %}>Urologist</option>
+                    </select>
+                </div>
+                <div class="experience">
+                    <select name="experience" aria-label="Filter by experience">
+                        <option value="" {% if not request.GET.experience %}selected{% endif %}>All Experience</option>
+                        <option value="0-2" {% if request.GET.experience == "0-2" %}selected{% endif %}>0-2 Years</option>
+                        <option value="3-5" {% if request.GET.experience == "3-5" %}selected{% endif %}>3-5 Years</option>
+                        <option value="6-9" {% if request.GET.experience == "6-9" %}selected{% endif %}>6-9 Years</option>
+                        <option value="10+" {% if request.GET.experience == "10+" %}selected{% endif %}>10+ Years</option>
+                    </select>
                 </div>
 
-                <details class="filter-dropdown">
-                    <summary>
-                        {% if request.GET.specialization %}{{ request.GET.specialization }}{% else %}All Specializations{% endif %}
-                    </summary>
-                    <div class="filter-options">
-                        <label><input type="radio" name="specialization" value="" {% if not request.GET.specialization %}checked{% endif %}>All Specializations</label>
-                        <label><input type="radio" name="specialization" value="Cardiologist" {% if request.GET.specialization == "Cardiologist" %}checked{% endif %}>Cardiologist</label>
-                        <label><input type="radio" name="specialization" value="Dentist" {% if request.GET.specialization == "Dentist" %}checked{% endif %}>Dentist</label>
-                        <label><input type="radio" name="specialization" value="Dermatologist" {% if request.GET.specialization == "Dermatologist" %}checked{% endif %}>Dermatologist</label>
-                        <label><input type="radio" name="specialization" value="ENT specialist" {% if request.GET.specialization == "ENT specialist" %}checked{% endif %}>ENT specialist</label>
-                        <label><input type="radio" name="specialization" value="General Physician" {% if request.GET.specialization == "General Physician" %}checked{% endif %}>General Physician</label>
-                        <label><input type="radio" name="specialization" value="Gynecologist" {% if request.GET.specialization == "Gynecologist" %}checked{% endif %}>Gynecologist</label>
-                        <label><input type="radio" name="specialization" value="Neurologist" {% if request.GET.specialization == "Neurologist" %}checked{% endif %}>Neurologist</label>
-                        <label><input type="radio" name="specialization" value="Ophthalmologist" {% if request.GET.specialization == "Ophthalmologist" %}checked{% endif %}>Ophthalmologist</label>
-                        <label><input type="radio" name="specialization" value="Orthologist" {% if request.GET.specialization == "Orthologist" %}checked{% endif %}>Orthologist</label>
-                        <label><input type="radio" name="specialization" value="Pediatrician" {% if request.GET.specialization == "Pediatrician" %}checked{% endif %}>Pediatrician</label>
-                        <label><input type="radio" name="specialization" value="psychiatrist" {% if request.GET.specialization == "psychiatrist" %}checked{% endif %}>Psychiatrist</label>
-                        <label><input type="radio" name="specialization" value="Urologist" {% if request.GET.specialization == "Urologist" %}checked{% endif %}>Urologist</label>
-                    </div>
-                </details>
-
-                <details class="filter-dropdown">
-                    <summary>
-                        {% if request.GET.experience == "0-2" %}0-2 Years{% elif request.GET.experience == "3-5" %}3-5 Years{% elif request.GET.experience == "6-9" %}6-9 Years{% elif request.GET.experience == "10+" %}10+ Years{% else %}All Experience{% endif %}
-                    </summary>
-                    <div class="filter-options">
-                        <label><input type="radio" name="experience" value="" {% if not request.GET.experience %}checked{% endif %}>All Experience</label>
-                        <label><input type="radio" name="experience" value="0-2" {% if request.GET.experience == "0-2" %}checked{% endif %}>0-2 Years</label>
-                        <label><input type="radio" name="experience" value="3-5" {% if request.GET.experience == "3-5" %}checked{% endif %}>3-5 Years</label>
-                        <label><input type="radio" name="experience" value="6-9" {% if request.GET.experience == "6-9" %}checked{% endif %}>6-9 Years</label>
-                        <label><input type="radio" name="experience" value="10+" {% if request.GET.experience == "10+" %}checked{% endif %}>10+ Years</label>
-                    </div>
-                </details>
-
                 <button type="submit">Search</button>
+            
             </div>
         </form>
     </fieldset>

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,12 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/scroll-reveal.css' %}">
+    <script src="{% static 'js/scroll-reveal.js' %}" defer></script>
 </head>
 
 <body>
 
     <style>
         header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             background-color: aliceblue;
             display: flex;
             justify-content: space-between;
@@ -18,13 +24,91 @@
             align-items: center;
         }
 
-        header div {
+        header > div {
             line-height: 5px;
         }
 
         nav a {
             margin-right: 30px;
             text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .account-menu {
+            position: relative;
+            margin-left: 8px;
+        }
+
+        .account-menu summary {
+            display: flex;
+            width: 42px;
+            height: 42px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgb(0, 38, 255);
+            border-radius: 6px;
+            color: rgb(0, 38, 255);
+            cursor: pointer;
+            list-style: none;
+        }
+
+        .account-menu summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .hamburger {
+            display: grid;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: currentColor;
+        }
+
+        .account-menu-content {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            z-index: 1001;
+            min-width: 210px;
+            padding: 8px 0;
+            border: 1px solid #d5deed;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            line-height: normal;
+        }
+
+        nav .account-menu-content a {
+            display: block;
+            margin: 0;
+            padding: 10px 16px;
+            color: #202b3c;
+            text-decoration: none;
+        }
+
+        nav .account-menu-content a:hover,
+        nav .account-menu-content a:focus-visible {
+            background: #edf3ff;
+            color: rgb(0, 38, 255);
+        }
+
+        nav .account-menu-content a.logout-link {
+            color: #c62828;
+            font-weight: 600;
+        }
+
+        nav .account-menu-content a.logout-link:hover,
+        nav .account-menu-content a.logout-link:focus-visible {
+            background: #fff0f0;
+            color: #a31515;
         }
 
         #register {
@@ -89,19 +173,38 @@
             <p>Appointment System</p>
         </div>
         <nav>
-            {% if request.user.is_authenticated %}
+
             <a href="/" id="home">Home</a>
             <a href="{% url 'about' %}" id="about">About Us</a>
             <a href="{% url 'doctor' %}" id="doctors">Doctors</a>
             <a href="{% url 'department' %}" id="dept">Department</a>
             <a href="{% url 'contact' %}" id="contact">Contact Us</a>
-            <a href="{% url 'logout' %}"><button id="logout">Logout</button></a>
+            {% if request.user.is_authenticated %}
+            <details class="account-menu">
+                <summary aria-label="Open account menu">
+                    <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+                </summary>
+                <div class="account-menu-content">
+                    {% if request.user.doctor_profile %}
+                    <a href="{% url 'doctor_profile' %}">My Profile</a>
+                    <a href="{% url 'doctor_today_appointments' %}">Today's Appointments</a>
+                    <a href="{% url 'doctor_appointments' %}">Patient Appointment List</a>
+                    <a href="{% url 'doctor_pending_appointments' %}">Complete Appointment</a>
+                    {% else %}
+                    <a href="{% url 'patient_profile' %}">Profile</a>
+                    <a href="{% url 'patient_appointments' %}">My Appointments</a>
+                    <a href="{% url 'patient_appointment_history' %}">Appointment History</a>
+                    {% endif %}
+                    <a class="logout-link" href="{% url 'logout' %}">Log out</a>
+                </div>
+            </details>
             {% else %}
-            <a href="{% url 'login' %}"><button id="log">Login</button></a>
             <a href="{% url 'signup' %}"><button id="register">Register</button></a>
             {% endif %}
+
         </nav>
     </header>
+
 
     {% block body %}
 
@@ -145,6 +248,15 @@
         </div>
         <br><br>
     </footer>
+    <script>
+        document.addEventListener('click', (event) => {
+            document.querySelectorAll('.account-menu[open]').forEach((menu) => {
+                if (!menu.contains(event.target)) {
+                    menu.open = false;
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

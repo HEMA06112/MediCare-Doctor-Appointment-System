@@ -32,6 +32,7 @@ header nav a {
 
 #mission {
     margin-left: 40px;
+    margin-right: 40px;
     line-height: 25px;
     display: flex;
     justify-content: space-between;
@@ -42,14 +43,30 @@ header nav a {
     color: rgb(0, 38, 255);
 }
 
+#mission > fieldset {
+    transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+#mission > fieldset:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #mission > fieldset {
+        transition: none;
+    }
+}
+
 fieldset {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     border-radius: 10px;
     text-align: center;
+    padding-top: 20px;
     width: 200px;
-    height: 200px;
+    height: 180px;
     margin-top: 40px;
     background-color: azure;
 }

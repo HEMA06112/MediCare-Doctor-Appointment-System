@@ -56,14 +56,26 @@ header nav a {
 }
 
 #choose fieldset {
-    width: 180px;
-    height: 140px;
-    margin: 60px;
+    width: 200px;
+    height: 160px;
+    margin: 45px;
     display: inline-flex;
     flex-direction: column;
     text-align: center;
     border-radius: 10px;
     background-color: azure;
+    transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+#choose fieldset:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #choose fieldset {
+        transition: none;
+    }
 }
 
 #choose h4 {

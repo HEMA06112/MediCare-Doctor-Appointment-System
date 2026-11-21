@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block body %}
+<main class="account-page">
+    <h1>My Profile</h1>
+    <p><strong>Username:</strong> {{ request.user.username }}</p>
+    <p><strong>Name:</strong> {{ request.user.get_full_name|default:request.user.username }}</p>
+    <p><strong>Email:</strong> {{ request.user.email|default:"Not provided" }}</p>
+</main>
+<style>
+    .account-page {
+        max-width: 720px;
+        margin: 40px auto;
+        padding: 24px;
+    }
+</style>
+{% endblock %}

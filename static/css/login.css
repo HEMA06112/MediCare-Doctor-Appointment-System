@@ -70,6 +70,18 @@ form {
     padding-right: 20px;
 }
 
+#right form[hidden] {
+    display: none;
+}
+
+#right .login-choice + form {
+    margin-top: 40px;
+}
+
+#right .login-choice + form + form {
+    margin-top: 40px;
+}
+
 label {
     font-size: 18px;
     font-weight: bold;
@@ -98,6 +110,46 @@ button {
     font-size: 15px;
 }
 
+.login-choice {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #d5deed;
+}
+
+#right .login-choice {
+    line-height: normal;
+    padding: 0;
+}
+
+.login-choice button {
+    flex: 1;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 12px 18px;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+    background-color: transparent;
+    color: #5b6472;
+    cursor: pointer;
+}
+
+.login-choice button[aria-pressed="true"] {
+    border-bottom-color: rgb(0, 38, 255);
+    color: rgb(0, 38, 255);
+}
+
+.login-choice button:focus-visible {
+    outline: 2px solid rgb(0, 38, 255);
+    outline-offset: 2px;
+}
+
 #right a {
     text-decoration: none;
+}
+
+#right .forgot-password {
+    align-self: flex-end;
+    color: red;
 }

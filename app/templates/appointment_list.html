@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block body %}
+<main class="appointment-list-page">
+    <h1>{{ page_title }}</h1>
+    {% if appointments %}
+    <div class="appointment-list">
+        {% for appointment in appointments %}
+        <article class="appointment-card">
+            <h2>{{ appointment.doctor.name }}</h2>
+            <p><strong>Patient:</strong> {{ appointment.patient_name }}</p>
+            <p><strong>Date:</strong> {{ appointment.date|date:"M j, Y" }}</p>
+            <p><strong>Time:</strong> {{ appointment.slot_time|time:"g:i A" }}</p>
+            <p><strong>Reason:</strong> {{ appointment.reason }}</p>
+            {% if appointment.completed %}
+            <p class="appointment-status">Completed</p>
+            {% elif allow_completion %}
+            <form method="post" action="{% url 'complete_appointment' appointment.id %}">
+                {% csrf_token %}
+                <button type="submit">Mark as complete</button>
+            </form>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No appointments to show.</p>
+    {% endif %}
+</main>
+<style>
+    .appointment-list-page {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 24px;
+    }
+
+    .appointment-list {
+        display: grid;
+        gap: 16px;
+    }
+
+    .appointment-card {
+        padding: 20px;
+        border: 1px solid #d5deed;
+        border-radius: 8px;
+    }
+
+    .appointment-card h2 {
+        margin-top: 0;
+    }
+
+    .appointment-card form button {
+        width: auto;
+        height: auto;
+        margin: 8px 0 0;
+        padding: 10px 16px;
+        cursor: pointer;
+    }
+
+    .appointment-status {
+        color: #167447;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}

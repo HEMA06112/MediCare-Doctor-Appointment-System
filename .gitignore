@@ -1,0 +1,21 @@
+#python cache
+__pycache__/
+*.py[cod]
+
+#virtual environment
+venv/
+env/
+.venv/
+
+#Django database
+db.sqlite3
+
+#environment variables
+.env
+
+#Editor files
+.vscode/
+
+#System files
+.DS_Store
+Thumbs.db

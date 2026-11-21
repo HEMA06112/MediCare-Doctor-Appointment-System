@@ -25,6 +25,12 @@ fieldset {
     align-items: center;
     border-radius: 10px;
     width: 270px;
+    transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+fieldset:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 fieldset img {
@@ -32,6 +38,11 @@ fieldset img {
     height: 200px;
     border-radius: 10px;
     align-items: center;
+    transition: transform 250ms ease;
+}
+
+fieldset:hover img {
+    transform: scale(1.05);
 }
 
 fieldset p {
@@ -39,4 +50,11 @@ fieldset p {
     line-height: 22px;
     width: 200px;
     font-size: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    fieldset,
+    fieldset img {
+        transition: none;
+    }
 }

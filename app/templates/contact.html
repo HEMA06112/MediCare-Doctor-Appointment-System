@@ -20,11 +20,9 @@
         <input type="text" placeholder="Your Phone Number" name="phone_number"><br><br>
         <input type="text" placeholder="Subject" name="subject"><br><br>
         <textarea placeholder="Your Message" name="message"></textarea><br><br>
-        <center><a href=""><button type="submit" id="send"> Send Message</button></a></center>
+        <center><a href=""><button type="submit" id="send" onclick="alert('Message sent successfully!')"> Send Message</button></a></center>
 
-        {% if success %}
-        <p>{{success}}</p>
-        {% endif %}
+        
 
     </fieldset>
     <fieldset id="det">
